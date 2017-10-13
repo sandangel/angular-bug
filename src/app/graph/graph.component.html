@@ -1,0 +1,23 @@
+<div fxLayout="column"
+     *ngIf="show">
+  <div class="graph-container"
+       *ngFor="let env of envData">
+    <ngx-charts-line-chart [scheme]="env.color"
+                           [results]="env.data"
+                           [xAxis]="true"
+                           [yAxis]="true"
+                           [legend]="true"
+                           [legendTitle]="env.legendTitle"
+                           [showXAxisLabel]="true"
+                           [showYAxisLabel]="true"
+                           [xAxisLabel]="env.xAxisLabel"
+                           [autoScale]="true"
+                           [timeline]="true"
+                           [yAxisLabel]="env.yAxisLabel">
+      <ng-template #tooltipTemplate
+                   let-model="model">
+        <h4>{{ model.name | date:'yyyy/MM/dd HH:mm:ss' }} : {{ model.value }} {{ env.unit }}</h4>
+      </ng-template>
+    </ngx-charts-line-chart>
+  </div>
+</div>
